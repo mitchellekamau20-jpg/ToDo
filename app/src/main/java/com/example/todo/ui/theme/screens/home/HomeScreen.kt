@@ -1,5 +1,6 @@
 package com.example.todo.ui.theme.screens.home
 
+import android.R.attr.text
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -25,10 +26,13 @@ fun HomeScreen(
     homeScreenViewModel: HomeScreenViewModel = viewModel(),
     modifier: Modifier
 ){ val activity = homeScreenViewModel.activity.collectAsState()
-    var activityName by remember { mutableStateOf(TextFieldValue("")) }
+    var activityTitle by remember { mutableStateOf(TextFieldValue("")) }
     var activityDescription by remember { mutableStateOf(TextFieldValue("")) }
-
-
+    var activityId by remember { mutableStateOf(TextFieldValue("")) }
+    var createdAt by remember { mutableStateOf(TextFieldValue("")) }
+    var activityMedia by remember { mutableStateOf(TextFieldValue("")) }
+    var isComplete by remember { mutableStateOf(TextFieldValue("")) }
+    var activityDuedate  by remember { mutableStateOf(TextFieldValue("")) }
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -37,9 +41,22 @@ fun HomeScreen(
             .padding(16.dp)
     ) {
         OutlinedTextField(
-            value = activityName,
-            onValueChange = { activityName = it },
+            value = activityId,
+            onValueChange = {activityId = it },
             label = { Text(text = "Activity Name") },
+            minLines = 1
+        )
+        OutlinedTextField(
+            value = createdAt ,
+            onValueChange = {createdAt  = it },
+            label = { Text(text = "Activity Name") },
+            minLines = 1
+        )
+
+        OutlinedTextField(
+            value = activityTitle,
+            onValueChange = { activityTitle = it },
+            label = { Text(text = "Title") },
             maxLines = 1
         )
         OutlinedTextField(
@@ -48,12 +65,42 @@ fun HomeScreen(
             label = { Text(text = "Activity Description") },
             minLines = 3
         )
+        OutlinedTextField(
+            value = activityMedia,
+            onValueChange = {activityMedia = it },
+            label = { Text(text = "Activity Media") },
+            minLines = 3
+        )
+        //boolean
+        Check(isComplete = false)
+
+        OutlinedTextField(
+            value = isComplete,
+            onValueChange = {isComplete = it },
+            label = {  Check(isComplete = false) },
+            minLines = 1
+        )
+
+        OutlinedTextField(
+            value = activityDuedate,
+            onValueChange = {activityDuedate = it },
+            label = { Text(text = "Activity Duedate") },
+            minLines = 1
+        )
+
+
+
+
 
         OutlinedButton(
             onClick = {
                 homeScreenViewModel.createActivity(
-                    name = activityName.text,
-                    description = activityDescription.text
+
+                    title = activityTitle.text,
+                    description = activityDescription.text,
+                    media = activityMedia.text,
+
+                    dueDate = activityDuedate.text
                 )
             }
         ) {
@@ -61,15 +108,24 @@ fun HomeScreen(
         }
         HorizontalDivider()
         Text(
-            text = activity.value.name
+            text = activity.value.title
         )
         Text(
             text = activity.value.description
         )
+        Text(
+            text = activity.value.media
+        )
+        Text(
+            text = activity.value.dueDate
+        )
     }
 }
 
-//fun createHobby(name:String, description:String): HobbyDataModel{
-//    return HobbyDataModel(name= name, description = description)
-//}
+@Composable
+fun Check(isComplete: Boolean) {
+
+}
+
+
 

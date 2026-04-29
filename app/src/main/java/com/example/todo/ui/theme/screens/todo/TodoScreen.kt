@@ -25,10 +25,13 @@ fun TodoScreen(
     todoViewModel: TodoViewModel = viewModel(),
     modifier: Modifier
 ){ val activity = todoViewModel.activity.collectAsState()
-    var activityName by remember { mutableStateOf(TextFieldValue("")) }
+    var activityTitle by remember { mutableStateOf(TextFieldValue("")) }
     var activityDescription by remember { mutableStateOf(TextFieldValue("")) }
-
-
+    var activityId by remember { mutableStateOf(TextFieldValue("")) }
+    var createdAt by remember { mutableStateOf(TextFieldValue("")) }
+    var activityMedia by remember { mutableStateOf(TextFieldValue("")) }
+    var isComplete by remember { mutableStateOf(TextFieldValue("")) }
+    var activityDuedate  by remember { mutableStateOf(TextFieldValue("")) }
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -37,23 +40,66 @@ fun TodoScreen(
             .padding(16.dp)
     ) {
         OutlinedTextField(
-            value = activityName,
-            onValueChange = { activityName = it },
-            label = { Text(text = "Hobby Name") },
+            value = activityId,
+            onValueChange = {activityId = it },
+            label = { Text(text = "Activity Name") },
+            minLines = 1
+        )
+        OutlinedTextField(
+            value = createdAt ,
+            onValueChange = {createdAt  = it },
+            label = { Text(text = "Activity Name") },
+            minLines = 1
+        )
+
+        OutlinedTextField(
+            value = activityTitle,
+            onValueChange = { activityTitle = it },
+            label = { Text(text = "Title") },
             maxLines = 1
         )
         OutlinedTextField(
             value = activityDescription,
-            onValueChange = { activityDescription = it },
-            label = { Text(text = "Hobby Description") },
+            onValueChange = {activityDescription = it },
+            label = { Text(text = "Activity Description") },
             minLines = 3
         )
+        OutlinedTextField(
+            value = activityMedia,
+            onValueChange = {activityMedia = it },
+            label = { Text(text = "Activity Media") },
+            minLines = 3
+        )
+        //boolean
+        Check(isComplete = false)
+
+        OutlinedTextField(
+            value = isComplete,
+            onValueChange = {isComplete = it },
+            label = {  Check(isComplete = false) },
+            minLines = 1
+        )
+
+        OutlinedTextField(
+            value = activityDuedate,
+            onValueChange = {activityDuedate = it },
+            label = { Text(text = "Activity Duedate") },
+            minLines = 1
+        )
+
+
+
+
 
         OutlinedButton(
             onClick = {
                 todoViewModel.createActivity(
-                    name = activityName.text,
-                    description = activityDescription.text
+
+                    title = activityTitle.text,
+                    description = activityDescription.text,
+                    media = activityMedia.text,
+
+                    dueDate = activityDuedate.text
                 )
             }
         ) {
@@ -61,11 +107,21 @@ fun TodoScreen(
         }
         HorizontalDivider()
         Text(
-            text = activity.value.name
+            text = activity.value.title
         )
         Text(
             text = activity.value.description
         )
+        Text(
+            text = activity.value.media
+        )
+        Text(
+            text = activity.value.dueDate
+        )
     }
+}
+
+@Composable
+fun Check(isComplete: Boolean) {
 
 }
