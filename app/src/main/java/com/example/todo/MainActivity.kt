@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.todo.ui.theme.ToDoTheme
 import com.example.todo.ui.theme.screens.home.HomeScreen
+import com.example.todo.ui.theme.screens.todo.TodoScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,7 +22,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             ToDoTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    HomeScreen(
+                    TodoScreen(
                         modifier = Modifier.padding(innerPadding)
                     )
                 }

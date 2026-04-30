@@ -49,7 +49,7 @@ fun HomeScreen(
         OutlinedTextField(
             value = createdAt ,
             onValueChange = {createdAt  = it },
-            label = { Text(text = "Activity Name") },
+            label = { Text(text = "When") },
             minLines = 1
         )
 
@@ -84,7 +84,7 @@ fun HomeScreen(
         OutlinedTextField(
             value = activityDuedate,
             onValueChange = {activityDuedate = it },
-            label = { Text(text = "Activity Duedate") },
+            label = { Text(text = "Activity to be done by") },
             minLines = 1
         )
 
