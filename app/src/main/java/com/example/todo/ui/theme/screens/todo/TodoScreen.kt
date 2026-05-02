@@ -86,11 +86,8 @@ fun TodoScreen(
             label = { Text(text = "Activity Duedate") },
             minLines = 1
         )
-
-
-
-
-
+        //buttons
+        //create button
         OutlinedButton(
             onClick = {
                 todoViewModel.createActivity(
@@ -118,8 +115,76 @@ fun TodoScreen(
         Text(
             text = activity.value.dueDate
         )
+
+    //update
+       OutlinedButton(
+        onClick = {
+            todoViewModel.updateActivity(
+
+                title = activityTitle.text,
+                description = activityDescription.text,
+                media = activityMedia.text,
+
+                dueDate = activityDuedate.text
+            )
+        }
+    ) {
+        Text(text = "update Activity")
     }
+    HorizontalDivider()
+    Text(
+        text = activity.value.title
+    )
+    Text(
+        text = activity.value.description
+    )
+    Text(
+        text = activity.value.media
+    )
+    Text(
+        text = activity.value.dueDate
+    )
+    //delete
+     OutlinedButton(
+        onClick = {
+            todoViewModel.deleteActivity()
+        }
+      ) {
+        Text(text = "Delete Activity")
+       }
+       HorizontalDivider()
+        Text(
+        text = activity.value.title
+      )
+      Text(
+        text = activity.value.description
+      )
+      Text(
+        text = activity.value.media
+      )
+      Text(
+        text = activity.value.dueDate
+      )
 }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @Composable
 fun Check(isComplete: Boolean) {

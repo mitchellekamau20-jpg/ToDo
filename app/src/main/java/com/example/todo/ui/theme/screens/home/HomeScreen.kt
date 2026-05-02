@@ -49,7 +49,7 @@ fun HomeScreen(
         OutlinedTextField(
             value = createdAt ,
             onValueChange = {createdAt  = it },
-            label = { Text(text = "Activity Name") },
+            label = { Text(text = "createdAt") },
             minLines = 1
         )
 
@@ -77,7 +77,7 @@ fun HomeScreen(
         OutlinedTextField(
             value = isComplete,
             onValueChange = {isComplete = it },
-            label = {  Check(isComplete = false) },
+            label = { Text(text = "isComplete = false") },
             minLines = 1
         )
 

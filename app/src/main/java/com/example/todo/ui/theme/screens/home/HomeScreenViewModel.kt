@@ -11,6 +11,7 @@ private val _activity = MutableStateFlow<TodoModel>(TodoModel())
     val activity = _activity.asStateFlow()
 
     //    "CRUD" - methods
+    //create
     fun createActivity(id:Int? =null,createdAt:Long?=null,title:String,description:String,media:String,isComplete: Boolean=false,dueDate: String) {
         _activity.value = TodoModel(
             id = id,
