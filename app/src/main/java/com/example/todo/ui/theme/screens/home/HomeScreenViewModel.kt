@@ -19,8 +19,7 @@ private val _activity = MutableStateFlow<TodoModel>(TodoModel())
             title = title,
             description = description,
             media = media,
-            isComplete = isComplete,
-            dueDate = dueDate,
+            isComplete = isComplete,,
         )
     }
 
