@@ -7,16 +7,19 @@ import kotlinx.coroutines.flow.asStateFlow
 
 class TodoViewModel: ViewModel() {
 //    state
-private val _activity = MutableStateFlow<TodoModel>(TodoModel())
+private val _activity = MutableStateFlow(TodoModel())
     val activity = _activity.asStateFlow()
 
     //    "CRUD" - methods
     //create
     fun createActivity(id:Int? =null,
                        createdAt:Long?=null,
-                       title:String,description:String
-                       ,media:String,isComplete: Boolean=false,
-                       dueDate: String)
+                       title:String,
+                       description:String,
+                       media:String,
+                       isComplete: Boolean=false,
+                       dueDate: String
+    )
     { _activity.value = TodoModel(
             id= id,
             createdAt=createdAt,
@@ -31,9 +34,9 @@ private val _activity = MutableStateFlow<TodoModel>(TodoModel())
 
 // To "read" a specific item into the state, you'd typically fetch it from a DB,
 
-    fun setActivity(item: TodoModel) {
-        _activity.value = item
-    }
+//    fun setActivity(item: TodoModel) {
+//        _activity.value = item
+//    }
 
     // Update
     //to show changes in a certain field
@@ -42,19 +45,22 @@ private val _activity = MutableStateFlow<TodoModel>(TodoModel())
         title: String? = null,
         description: String? = null,
         isComplete: Boolean? = null,
-        dueDate: String,
-        media: String
+        media: String?=null
+
     ) {
         _activity.value = _activity.value.copy(
             title = title ?: _activity.value.title,
             description = description ?: _activity.value.description,
-            isComplete = isComplete ?: _activity.value.isComplete
+            isComplete = isComplete ?: _activity.value.isComplete,
+            media = media ?:_activity.value.media
         )
     }
 
     // Delete
 // This resets the state back to an empty TodoModel instance.
-    fun deleteActivity() {
+    fun deleteActivity(
+
+    ) {
         _activity.value = TodoModel()
     }
 

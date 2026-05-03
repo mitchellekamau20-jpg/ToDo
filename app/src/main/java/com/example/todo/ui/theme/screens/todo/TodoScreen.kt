@@ -67,8 +67,8 @@ fun TodoScreen(
         OutlinedTextField(
             value = activityMedia,
             onValueChange = {activityMedia = it },
-            label = { Text(text = "Activity Media") },
-            minLines = 3
+            label = { Text(text = "Activity Media (URL)") },
+            minLines = 1
         )
         //boolean
         Check(isComplete = false)
@@ -95,7 +95,6 @@ fun TodoScreen(
                     title = activityTitle.text,
                     description = activityDescription.text,
                     media = activityMedia.text,
-
                     dueDate = activityDuedate.text
                 )
             }
@@ -125,7 +124,6 @@ fun TodoScreen(
                 description = activityDescription.text,
                 media = activityMedia.text,
 
-                dueDate = activityDuedate.text
             )
         }
     ) {
@@ -138,9 +136,7 @@ fun TodoScreen(
     Text(
         text = activity.value.description
     )
-    Text(
-        text = activity.value.media
-    )
+
     Text(
         text = activity.value.dueDate
     )
